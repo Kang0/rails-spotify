@@ -6,6 +6,8 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+RSpotify::authenticate("a95334432a204b8d9dd01e13cf24cfc8", "6a968db150f5425b9deb284720f6c2a0")
+
 module RailsSpotify
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
