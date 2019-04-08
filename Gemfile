@@ -29,6 +29,8 @@ gem 'jbuilder', '~> 2.5'
 
 #### USER ADDED
 
+gem 'coffee-script-source', '1.8.0'
+
 gem 'jquery-rails'
 gem 'bootstrap-sass', ">= 3.4.1"
 
