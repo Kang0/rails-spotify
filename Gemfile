@@ -29,6 +29,7 @@ gem 'jbuilder', '~> 2.5'
 
 #### USER ADDED
 
+gem 'jquery-rails'
 gem 'bootstrap-sass'
 
 gem 'devise'
