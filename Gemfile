@@ -30,7 +30,7 @@ gem 'jbuilder', '~> 2.5'
 #### USER ADDED
 
 gem 'jquery-rails'
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', ">= 3.4.1"
 
 gem 'devise'
 
