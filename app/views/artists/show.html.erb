@@ -1,11 +1,16 @@
 <h1 class="page-header"><%= @artist.name %></h1>
-<% @artist.albums(country: 'US').each do |album| %>
- <h3><%= album.name %></h3>
- <ul>
-   <% album.tracks.each do |track| %>
-     <li>
-       <%= track.name %>
-     </li>
-   <% end %>
- </ul>
-<% end %>
+<div class="row">
+  <% @artist.albums(country: 'US').each do |album| %>
+    <div class="col-sm-4">
+      <h3><%= album.name %></h3>
+      <img src="<%= image_path(album.images.first['url']) %>" height=300 >
+      <ul>
+        <% album.tracks.each do |track| %>
+          <li>
+            <%= track.name %>
+          </li>
+        <% end %>
+      </ul>
+    </div><!-- end col-sm-4 -->
+  <% end %>
+</div> <!--end row-->
