@@ -1,4 +1,5 @@
-class Artist < ApplicationRecord
-    has_many :user_artists
-    has_many :users, through: :user_artists
+class Vinyl < ApplicationRecord
+    belongs_to :user
+    belongs_to :artist
+    belongs_to :album
 end

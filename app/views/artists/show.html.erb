@@ -4,6 +4,7 @@
     <div class="col-sm-4">
       <h3><%= album.name %></h3>
       <img src="<%= image_path(album.images.first['url']) %>" height=300 >
+      
       <ul>
         <% album.tracks.each do |track| %>
           <li>
