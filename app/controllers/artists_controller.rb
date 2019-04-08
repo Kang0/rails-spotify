@@ -1,4 +1,8 @@
 class ArtistsController < ApplicationController
+
+  def search
+
+  end
   
   def index
     if !params[:artist_name].empty?

@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
+  root 'welcome#home'
+
+  devise_for :users
+
   get '/artists', to: 'artists#index'
   get '/artists/:id', to: 'artists#show', as: 'artist'
-
-  root 'welcome#home'
+  get '/artists/search', to: 'artists#search'
 
 end
