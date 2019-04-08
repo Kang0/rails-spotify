@@ -12,7 +12,6 @@ class VinylsController < ApplicationController
         end
         
         current_user.vinyls.build(album: @album).save
-        binding.pry
     end
 
 end

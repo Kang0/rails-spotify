@@ -1,7 +1,6 @@
 class ArtistsController < ApplicationController
 
   def search
-
   end
   
   def index
