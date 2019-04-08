@@ -6,6 +6,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :vinyls
-  has_many :artists, through: :vinyls
   has_many :albums, through: :vinyls
 end

@@ -10,17 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_08_153815) do
+ActiveRecord::Schema.define(version: 2019_04_08_191641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "albums", force: :cascade do |t|
     t.string "name"
-    t.integer "release_date"
+    t.string "release_date"
     t.integer "number_of_tracks"
     t.string "images"
-    t.string "tracks"
     t.bigint "artist_id"
     t.index ["artist_id"], name: "index_albums_on_artist_id"
   end
@@ -29,6 +28,15 @@ ActiveRecord::Schema.define(version: 2019_04_08_153815) do
     t.string "name"
     t.string "genre"
     t.string "image"
+  end
+
+  create_table "tracks", force: :cascade do |t|
+    t.string "name"
+    t.integer "duration_ms"
+    t.boolean "explicit"
+    t.integer "track_number"
+    t.bigint "album_id"
+    t.index ["album_id"], name: "index_tracks_on_album_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -44,16 +52,14 @@ ActiveRecord::Schema.define(version: 2019_04_08_153815) do
   end
 
   create_table "vinyls", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "artist_id"
-    t.bigint "album_id"
     t.integer "rating"
+    t.bigint "user_id"
+    t.bigint "album_id"
     t.index ["album_id"], name: "index_vinyls_on_album_id"
-    t.index ["artist_id"], name: "index_vinyls_on_artist_id"
     t.index ["user_id"], name: "index_vinyls_on_user_id"
   end
 
+  add_foreign_key "tracks", "albums"
   add_foreign_key "vinyls", "albums"
-  add_foreign_key "vinyls", "artists"
   add_foreign_key "vinyls", "users"
 end

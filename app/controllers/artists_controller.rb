@@ -16,8 +16,5 @@ class ArtistsController < ApplicationController
     @artist = RSpotify::Artist.find(params[:id])
   end
 
-  def add
 
-  end
-  
 end
