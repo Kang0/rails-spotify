@@ -1,5 +1,9 @@
 class VinylsController < ApplicationController
 
+    def new
+
+    end
+
     def create
         @spotify_album = RSpotify::Album.find(params[:album_id])
         
@@ -12,6 +16,8 @@ class VinylsController < ApplicationController
         end
         
         current_user.vinyls.build(album: @album).save
+
+        redirect_to new_user_vinyl_path(current_user)
     end
 
 end

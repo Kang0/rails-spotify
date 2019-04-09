@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'welcome#home'
 
   resources :users, only: [] do
-    resources :vinyls, only: [:index, :edit, :show, :destroy]
+    resources :vinyls, only: [:index, :edit, :show, :destroy, :new]
   end
   
   devise_for :users
