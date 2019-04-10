@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_08_191641) do
+ActiveRecord::Schema.define(version: 2019_04_09_160021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,16 @@ ActiveRecord::Schema.define(version: 2019_04_08_191641) do
     t.string "name"
     t.string "genre"
     t.string "image"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "content"
+    t.integer "rating"
+    t.boolean "recommend"
+    t.bigint "user_id"
+    t.bigint "album_id"
+    t.index ["album_id"], name: "index_reviews_on_album_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "tracks", force: :cascade do |t|
@@ -52,13 +62,14 @@ ActiveRecord::Schema.define(version: 2019_04_08_191641) do
   end
 
   create_table "vinyls", force: :cascade do |t|
-    t.integer "rating"
     t.bigint "user_id"
     t.bigint "album_id"
     t.index ["album_id"], name: "index_vinyls_on_album_id"
     t.index ["user_id"], name: "index_vinyls_on_user_id"
   end
 
+  add_foreign_key "reviews", "albums"
+  add_foreign_key "reviews", "users"
   add_foreign_key "tracks", "albums"
   add_foreign_key "vinyls", "albums"
   add_foreign_key "vinyls", "users"

@@ -1,0 +1,20 @@
+<div class="row">
+    <% @vinyls.each do |vinyl| %>
+      <div class="col-sm-4">
+        <h3><%= vinyl.album.name %></h3>
+        
+        <!-- ALBUM STAR RATING -->
+        <% vinyl.album.reviews.find_by(user_id: current_user.id).rating.times do %>
+          <span class="glyphicon glyphicon-star"></span>
+        <% end %>
+        <% vinyl.album.reviews.find_by(user_id: current_user.id).blank_stars.times do %>
+            <span class="glyphicon glyphicon-star-empty"></span>
+        <% end %>
+        <!-- -->
+
+        <img src="<%= image_path(vinyl.album.images) %>" height=300 >
+        <br>
+        <%= link_to "Add Review", new_album_review_path(vinyl.album) %>
+      </div><!-- end col-sm-4 -->
+    <% end %>
+  </div> <!--end row-->

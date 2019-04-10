@@ -1,23 +1,35 @@
 class VinylsController < ApplicationController
 
-    def new
-
-    end
-
     def create
         @spotify_album = RSpotify::Album.find(params[:album_id])
         
         @artist = Artist.find_or_create_by(name: @spotify_album.artists.first.name, genre: @spotify_album.artists.first.genres[0], image: @spotify_album.artists.first.images[0]["url"])
         @album = Album.find_or_create_by(name: @spotify_album.name, release_date: @spotify_album.release_date, number_of_tracks: @spotify_album.total_tracks, images: @spotify_album.images[0]["url"], artist: @artist)
+        
         if @album.tracks.empty?
             @spotify_album.tracks.each do |track|
                 @album.tracks.build(name: track.name, duration_ms: track.duration_ms, explicit: track.explicit, track_number: track.track_number).save
             end
         end
+
+        @album.reviews.build(content: "", rating: 0, user_id: current_user.id).save
+        binding.pry
         
         current_user.vinyls.build(album: @album).save
 
-        redirect_to new_user_vinyl_path(current_user)
+        redirect_to user_vinyls_path(current_user)
+    end
+
+    def index
+        if params[:user_id]
+            @vinyls = User.find(params[:user_id]).vinyls
+        else
+            @vinyls = Vinyl.all
+        end
+    end
+
+    def show
+        @vinyl = Vinyl.find(params[:id])
     end
 
 end
