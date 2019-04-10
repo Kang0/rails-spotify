@@ -37,6 +37,7 @@ gem 'sassc-rails', '>= 2.1.0'
 gem 'popper_js', '~> 1.12.9'
 
 gem 'devise'
+gem 'omniauth-facebook'
 
 gem 'rspotify'
 

@@ -21,7 +21,7 @@
         <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
               <% if vinyl.album.reviews.find_by(user_id: current_user.id).content.blank? %>
-                <a class="btn btn-sm btn-outline-secondary" href="<%= new_album_review(vinyl.album) %>">
+                <a class="btn btn-sm btn-outline-secondary" href="<%= new_album_review_path(vinyl.album) %>">
                   Add Review
                 </a>
               <% else %>
