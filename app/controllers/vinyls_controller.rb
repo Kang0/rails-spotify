@@ -13,7 +13,6 @@ class VinylsController < ApplicationController
         end
 
         @album.reviews.build(content: "", rating: 0, user_id: current_user.id).save
-        binding.pry
         
         current_user.vinyls.build(album: @album).save
 
@@ -30,6 +29,10 @@ class VinylsController < ApplicationController
 
     def show
         @vinyl = Vinyl.find(params[:id])
+    end
+
+    def destroy
+        
     end
 
 end

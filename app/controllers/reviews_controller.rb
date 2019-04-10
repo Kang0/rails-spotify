@@ -1,7 +1,8 @@
 class ReviewsController < ApplicationController
 
     def index
-
+        @album = Album.find(params[:album_id])
+        @reviews = @album.reviews
     end
 
     def new

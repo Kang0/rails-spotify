@@ -10,11 +10,31 @@
         <% vinyl.album.reviews.find_by(user_id: current_user.id).blank_stars.times do %>
             <span class="glyphicon glyphicon-star-empty"></span>
         <% end %>
-        <!-- -->
+        <strong><%= vinyl.album.reviews.find_by(user_id: current_user.id).rating %> / 10</strong>
 
-        <img src="<%= image_path(vinyl.album.images) %>" height=300 >
+        <!-- IMAGE -->
+        <img src="<%= image_path(vinyl.album.images) %>" alt="album" height=300 >
+        
+
         <br>
-        <%= link_to "Add Review", new_album_review_path(vinyl.album) %>
+
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <% if vinyl.album.reviews.find_by(user_id: current_user.id).content.blank? %>
+                <a class="btn btn-sm btn-outline-secondary" href="<%= new_album_review(vinyl.album) %>">
+                  Add Review
+                </a>
+              <% else %>
+                <a class="btn btn-sm btn-outline-secondary" href="<%= edit_album_review_path(vinyl.album, vinyl.album.reviews.find_by(user_id: current_user.id)) %>">
+                  Edit Review
+                </a>
+              <% end %>
+              <a class="btn btn-sm btn-outline-secondary" href="<%= album_path(vinyl.album) %>">
+                  Go to Album
+              </a>
+            </div>
+        </div>
+
       </div><!-- end col-sm-4 -->
     <% end %>
   </div> <!--end row-->

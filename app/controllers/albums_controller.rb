@@ -2,6 +2,7 @@ class AlbumsController < ApplicationController
 
     def index
         @album = Album.all
+        @reviews = Review.all
     end
 
     def show

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root 'welcome#home'
+  get '/about', to: 'welcome#about'
 
   resources :users, only: [] do
     resources :vinyls, only: [:index, :show, :destroy, :create]
