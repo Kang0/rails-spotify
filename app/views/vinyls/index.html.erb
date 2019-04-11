@@ -1,40 +1,55 @@
-<div class="row">
-    <% @vinyls.each do |vinyl| %>
-      <div class="col-sm-4">
-        <h3><%= vinyl.album.name %></h3>
-        
-        <!-- ALBUM STAR RATING -->
-        <% vinyl.album.reviews.find_by(user_id: current_user.id).rating.times do %>
-          <span class="glyphicon glyphicon-star"></span>
-        <% end %>
-        <% vinyl.album.reviews.find_by(user_id: current_user.id).blank_stars.times do %>
-            <span class="glyphicon glyphicon-star-empty"></span>
-        <% end %>
-        <strong><%= vinyl.album.reviews.find_by(user_id: current_user.id).rating %> / 10</strong>
 
-        <!-- IMAGE -->
-        <img src="<%= image_path(vinyl.album.images) %>" alt="album" height=300 >
-        
+<section class="jumbotron text-center" style="background-image: url(https://www.billboard.com/files/media/vinyl-records-stock-2017-billboard-1548.jpg); background-size: 100%;">
+  <div class="container">
+    <h1 class="jumbotron-heading" style="color: white;">Vinyl Collection</h1>
+    <p class="lead" style="color: white; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">All of your vinyls, in one electronic cabinet</p>
+    <p>
+      <a href="/search" class="btn btn-primary my-2">Search for more vinyls</a>
+      <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+    </p>
+  </div>
+</section>
 
-        <br>
 
-        <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-              <% if vinyl.album.reviews.find_by(user_id: current_user.id).content.blank? %>
-                <a class="btn btn-sm btn-outline-secondary" href="<%= new_album_review_path(vinyl.album) %>">
-                  Add Review
-                </a>
-              <% else %>
-                <a class="btn btn-sm btn-outline-secondary" href="<%= edit_album_review_path(vinyl.album, vinyl.album.reviews.find_by(user_id: current_user.id)) %>">
-                  Edit Review
-                </a>
-              <% end %>
-              <a class="btn btn-sm btn-outline-secondary" href="<%= album_path(vinyl.album) %>">
-                  Go to Album
-              </a>
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <% @vinyls.each do |vinyl| %>
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+              <img class="card-img-top" src="<%= vinyl.album.images %>" alt="Album Cover">
+              <div class="card-body">
+                <p class="card-text"><%= vinyl.album.name %> - <%= vinyl.album.artist.name %></p>
+                <p class="card-text">
+                  <% vinyl.album.reviews.find_by(user_id: current_user.id).rating.times do %>
+                    <span class="glyphicon glyphicon-star"></span>
+                  <% end %>
+                  <% vinyl.album.reviews.find_by(user_id: current_user.id).blank_stars.times do %>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                   <% end %>
+                <strong><%= vinyl.album.reviews.find_by(user_id: current_user.id).rating %> / 10</strong></p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                      <% if vinyl.album.reviews.find_by(user_id: current_user.id).content.blank? %>
+                      <a class="btn btn-sm btn-outline-secondary" href="<%= new_album_review_path(vinyl.album) %>">
+                        Add Review
+                      </a>
+                    <% else %>
+                      <a class="btn btn-sm btn-outline-secondary" href="<%= edit_album_review_path(vinyl.album, vinyl.album.reviews.find_by(user_id: current_user.id)) %>">
+                        Edit Review
+                      </a>
+                    <% end %>
+                    <a class="btn btn-sm btn-outline-secondary" href="<%= album_path(vinyl.album) %>">
+                        Go to Album
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
-        </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-      </div><!-- end col-sm-4 -->
-    <% end %>
-  </div> <!--end row-->
+  

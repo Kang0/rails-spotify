@@ -1,4 +1,31 @@
-What our user's have to say about this album<br>
+<h1><%= @album.artist.name %></h1>
+<img src="<%= @album.images %>" height=500>
+<h2><%= @album.name %></h2>
+<h4><%= release_date @album %></h3>
+<h4><%= @album.label %></h4>
+<h4><%= @album.copyrights %></h4>
 
-Average Rating
+<h2>Average User Rating: <%= rating_star(avg_rating(@album.reviews)) %><%= blank_star(avg_rating(@album.reviews)) %> - <%= avg_rating @album.reviews %> / 10</h2>
+
+<%= link_to "Listen to the Album on Spotify", @album.external_urls %><br><br>
+
+<ul class="list-group list-group-flush">
+    <% @album.tracks.each do |track| %>
+        <li class="list-group-item"><%= track.name %></li>
+    <% end %>
+</ul>
+
+What user's have to say about this album:<br><br>
+    <div class="card-group">
+        <% @album.reviews.each do |review| %>
+            <div class="card border-dark mb-3" style="width: 18rem;">
+                <div class="card-header"><%= review.user.email %> - <strong><%= review.rating %>/10</strong></div>
+                <div class="card-body">
+                    <p class="card-text text-truncate"><%= review.content %></p>
+                    <a href="<%= album_review_path(@album, review) %>" class="btn btn-sm btn-outline-secondary">See Review</a>
+                </div>
+            </div>
+        <% end %>
+    </div><!-- end row -->   
+
 

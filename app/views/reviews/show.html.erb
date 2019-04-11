@@ -1,7 +1,13 @@
-<% @review.rating.to_i.times do %>
-    <span class="glyphicon glyphicon-star"></span>
-<% end %>
-<% @review.blank_stars.times do %>
-    <span class="glyphicon glyphicon-star-empty"></span>
-<% end %><br><br>
+<!-- See all users reviews
+See all album reviews -->
+
+<%= @user.name %>
+<%= @user.email %>
+<img src="<%= @user.image %>">
+<%= joined @user %>
+
+<%= rating_star @review.rating %><%= blank_star @review.rating %>
+<%= @review.title %>
 <%= @review.content%>
+
+<%= review_created @review %>

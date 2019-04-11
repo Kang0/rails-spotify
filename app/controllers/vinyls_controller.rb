@@ -11,7 +11,7 @@ class VinylsController < ApplicationController
             end
         end
 
-        @album.reviews.build(content: "", rating: 0, user_id: current_user.id).save
+        @album.reviews.build(content: "", rating: 0, title: "", user_id: current_user.id).save
         
         current_user.vinyls.build(album: @album).save
 
