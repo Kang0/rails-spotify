@@ -13,14 +13,24 @@ class VinylsController < ApplicationController
 
         @album.reviews.build(content: "", rating: 0, title: "", user_id: current_user.id).save
         
-        current_user.vinyls.build(album: @album).save
+        current_user.vinyls.build(album: @album, rating: 0).save
 
         redirect_to user_vinyls_path(current_user)
     end
 
     def index
         if params[:user_id]
-            @vinyls = User.find(params[:user_id]).vinyls
+            if params[:filter] == "Highest Rated"
+                @vinyls = Vinyl.highest_rated
+            elsif params[:filter] == "Lowest Rated"
+                @vinyls = Vinyl.lowest_rated
+            elsif params[:filter] == "Newest Additions"
+                @vinyls = User.find(params[:user_id]).vinyls.newest
+            elsif params[:filter] == "Oldest Additions"
+                @vinyls = User.find(params[:user_id]).vinyls.oldest
+            else
+                @vinyls = User.find(params[:user_id]).vinyls
+            end
         else
             @vinyls = Vinyl.all
         end

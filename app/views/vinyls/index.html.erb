@@ -1,4 +1,3 @@
-
 <section class="jumbotron text-center" style="background-image: url(https://www.billboard.com/files/media/vinyl-records-stock-2017-billboard-1548.jpg); background-size: 100%;">
   <div class="container">
     <h1 class="jumbotron-heading" style="color: white;">Vinyl Collection</h1>
@@ -12,14 +11,20 @@
 
 
 <div class="album py-5 bg-light">
-  <div class="container">
+  <div class="container-fluid">
+    <div>
+      <%= form_tag "", method: "get" do %>
+        <%= select_tag "filter", "<option>Highest Rated</option><option>Lowest Rated</option><option>Newest Additions</option><option>Oldest Additions</option>".html_safe %>
+        <%= submit_tag "Filter" %>
+      <% end %>
+    </div>
     <div class="row">
       <% @vinyls.each do |vinyl| %>
         <div class="col-md-4">
             <div class="card mb-4 shadow-sm">
               <img class="card-img-top" src="<%= vinyl.album.images %>" alt="Album Cover">
               <div class="card-body">
-                <p class="card-text"><%= vinyl.album.name %> - <%= vinyl.album.artist.name %></p>
+                <p class="card-text"><strong><%= vinyl.album.name %> - <%= vinyl.album.artist.name %></strong></p>
                 <p class="card-text">
                   <% vinyl.album.reviews.find_by(user_id: current_user.id).rating.times do %>
                     <span class="glyphicon glyphicon-star"></span>
