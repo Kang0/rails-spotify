@@ -47,6 +47,7 @@
                     <a class="btn btn-sm btn-outline-secondary" href="<%= album_path(vinyl.album) %>">
                         Go to Album
                     </a>
+                      <%= link_to "Delete", user_vinyl_path(current_user.id, vinyl), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-outline-secondary" %>
                   </div>
                 </div>
               </div>

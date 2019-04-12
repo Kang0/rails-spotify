@@ -41,7 +41,12 @@ class VinylsController < ApplicationController
     end
 
     def destroy
-        
+        @vinyl = Vinyl.find(params[:id])
+        @review = Review.where(user_id: current_user.id, album_id: @vinyl.album).first
+        @vinyl.destroy
+        @review.destroy
+
+        redirect_to user_vinyls_path(current_user.id)
     end
 
 end
