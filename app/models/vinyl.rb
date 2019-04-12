@@ -1,7 +1,7 @@
 class Vinyl < ApplicationRecord
     belongs_to :user
     belongs_to :album
-    has_many :reviews
+    has_one :review
 
     scope :oldest, -> { order(created_at: :asc)}
     scope :newest, -> { order(created_at: :desc)}

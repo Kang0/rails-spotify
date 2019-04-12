@@ -4,6 +4,7 @@ class Review < ApplicationRecord
     
     belongs_to :album
     belongs_to :user
+    belongs_to :vinyl
 
     scope :highest_rated, -> { order(rating: :desc) }
     scope :lowest_rated, -> { order(rating: :asc) }

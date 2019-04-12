@@ -1,4 +1,5 @@
 class ArtistsController < ApplicationController
+  before_action :authenticate_user!
 
   def search
   end
@@ -14,6 +15,5 @@ class ArtistsController < ApplicationController
   def show
     @artist = RSpotify::Artist.find(params[:id])
   end
-
 
 end

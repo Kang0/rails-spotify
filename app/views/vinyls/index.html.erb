@@ -26,22 +26,18 @@
               <div class="card-body">
                 <p class="card-text"><strong><%= vinyl.album.name %> - <%= vinyl.album.artist.name %></strong></p>
                 <p class="card-text">
-                  <% vinyl.album.reviews.find_by(user_id: current_user.id).rating.times do %>
-                    <span class="glyphicon glyphicon-star"></span>
-                  <% end %>
-                  <% vinyl.album.reviews.find_by(user_id: current_user.id).blank_stars.times do %>
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                   <% end %>
-                <strong><%= vinyl.album.reviews.find_by(user_id: current_user.id).rating %> / 10</strong></p>
+                  <%= rating_star vinyl.rating %>
+                  <%= blank_star vinyl.rating %>
+                <strong><%= vinyl.rating %> / 10</strong></p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                      <% if vinyl.album.reviews.find_by(user_id: current_user.id).content.blank? %>
-                      <a class="btn btn-sm btn-outline-secondary" href="<%= new_album_review_path(vinyl.album) %>">
-                        Add Review
-                      </a>
-                    <% else %>
+                      <% if vinyl.review %>
                       <a class="btn btn-sm btn-outline-secondary" href="<%= edit_album_review_path(vinyl.album, vinyl.album.reviews.find_by(user_id: current_user.id)) %>">
                         Edit Review
+                      </a>
+                    <% else %>
+                      <a class="btn btn-sm btn-outline-secondary" href="<%= new_album_review_path(vinyl.album) %>">
+                        Add Review
                       </a>
                     <% end %>
                     <a class="btn btn-sm btn-outline-secondary" href="<%= album_path(vinyl.album) %>">

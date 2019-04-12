@@ -7,7 +7,25 @@ class ReviewsController < ApplicationController
 
     def new
         @album = Album.find(params[:album_id])
-        @review = @album.reviews.find_by(user_id: current_user.id)
+        @review = @album.reviews.build
+    end
+
+    def create
+        @vinyl = Vinyl.find_by(user_id: current_user.id, album_id: params[:album_id])
+        @review = Review.create(
+            content: params[:review][:content], 
+            title: params[:review][:title], 
+            rating: params[:review][:rating], 
+            recommend: params[:review][:rating], 
+            user_id: current_user.id, 
+            album_id: params[:album_id], 
+            vinyl_id: @vinyl.id
+        )
+        @vinyl.rating = params[:review][:rating]
+        @vinyl.save
+
+        binding.pry
+        redirect_to album_review_path(@review.album, @review)
     end
 
     def edit

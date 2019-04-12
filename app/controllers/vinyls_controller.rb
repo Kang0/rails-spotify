@@ -1,4 +1,5 @@
 class VinylsController < ApplicationController
+    before_action :authenticate_user!
 
     def create
         @spotify_album = RSpotify::Album.find(params[:album_id])
@@ -10,8 +11,6 @@ class VinylsController < ApplicationController
                 @album.tracks.build(name: track.name, duration_ms: track.duration_ms, explicit: track.explicit, track_number: track.track_number).save
             end
         end
-
-        @album.reviews.build(content: "", rating: 0, title: "", user_id: current_user.id).save
         
         current_user.vinyls.build(album: @album, rating: 0).save
 
