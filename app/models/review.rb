@@ -9,6 +9,7 @@ class Review < ApplicationRecord
     scope :highest_rated, -> { order(rating: :desc) }
     scope :lowest_rated, -> { order(rating: :asc) }
     scope :user, -> (user) { where("user_id = ?", user) }
+    scope :recommended, -> { where(recommend: true) }
 
     def blank_stars
         10 - rating.to_i
