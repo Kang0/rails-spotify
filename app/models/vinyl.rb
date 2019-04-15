@@ -8,4 +8,5 @@ class Vinyl < ApplicationRecord
     scope :highest_rated, -> { order(rating: :desc)}
     scope :lowest_rated, -> { order(rating: :asc)}
     scope :user, -> (user) { where("user_id = ?", user) }
+    
 end

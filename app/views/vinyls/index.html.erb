@@ -13,7 +13,7 @@
         <%= select_tag "filter", "<option>Highest Rated</option><option>Lowest Rated</option><option>Newest Additions</option><option>Oldest Additions</option>".html_safe %>
         <%= submit_tag "Filter" %>
       <% end %>
-    </div>
+    </div><br>
     <div class="row">
       <% @vinyls.each do |vinyl| %>
         <div class="col-md-4">

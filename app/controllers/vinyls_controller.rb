@@ -19,14 +19,16 @@ class VinylsController < ApplicationController
 
     def index
         if params[:user_id]
+            user_vinyls = Vinyl.user(params[:user_id])
+
             if params[:filter] == "Highest Rated"
-                @vinyls = Vinyl.highest_rated
+                @vinyls = user_vinyls.highest_rated
             elsif params[:filter] == "Lowest Rated"
-                @vinyls = Vinyl.lowest_rated
+                @vinyls = user_vinyls.lowest_rated
             elsif params[:filter] == "Newest Additions"
-                @vinyls = User.find(params[:user_id]).vinyls.newest
+                @vinyls = user_vinyls.newest
             elsif params[:filter] == "Oldest Additions"
-                @vinyls = User.find(params[:user_id]).vinyls.oldest
+                @vinyls = user_vinyls.oldest
             else
                 @vinyls = User.find(params[:user_id]).vinyls
             end
