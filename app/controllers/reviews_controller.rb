@@ -13,7 +13,6 @@ class ReviewsController < ApplicationController
     def create
         @album = Album.find(params[:album_id])
         @vinyl = Vinyl.find_by(user_id: current_user.id, album_id: params[:album_id])
-        binding.pry
         @review = Review.new(
             content: params[:review][:content], 
             title: params[:review][:title], 

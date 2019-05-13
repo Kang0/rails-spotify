@@ -14,6 +14,10 @@ class ArtistsController < ApplicationController
 
   def show
     @artist = RSpotify::Artist.find(params[:id])
+    respond_to do |f|
+      f.html {render :show}
+      f.json {render json: @artist.albums}
+    end
   end
 
 end
