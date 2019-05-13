@@ -9,11 +9,11 @@ Artist.create(name: "Kero Kero Bonito", genre: "escape room", image: "https://i.
 Artist.create(name: "Billie Eilish", genre: "electropop", image: "https://i.scdn.co/image/bcf71477d890a736eb769dc5f8af4e7d28278824")
 Artist.create(name: "Chance the Rapper", genre: "chicago rap", image: "https://i.scdn.co/image/f5aceffb43876273fa72b7c3c002d7e3218075fd")
 Artist.create(name: "My Chemical Romance", genre: "emo", image: "https://i.scdn.co/image/160080823e35fcf4d47c8dfad20f5b13c7acf921")
-Artist.create(iname: "MGMT", genre: "alternative dance", image: "https://i.scdn.co/image/552cc07e487a1dc7fd91d680824086b4daff8fc8")
+Artist.create(name: "MGMT", genre: "alternative dance", image: "https://i.scdn.co/image/552cc07e487a1dc7fd91d680824086b4daff8fc8")
 
-User.create(email: "kevinkangg@gmail.com", provider: nil, uid: nil, name: "Kevin Kang", image: nil)
-User.create(email: "sam@isbeautiful.com", provider: nil, uid: nil, name: "Samantha", image: nil)
-User.create(email: "k3131n@gmail.com", provider: "facebook", uid: "10214987847594507", name: "Kevin Kang", image: "http://graph.facebook.com/v2.10/10214987847594507/picture")
+User.create(email: "kevinkangg@gmail.com", password: "romegraftm3", provider: nil, uid: nil, name: "Kevin Kang", image: nil)
+User.create(email: "sam@isbeautiful.com", password: "romegraftm3", provider: nil, uid: nil, name: "Samantha", image: nil)
+User.create(email: "k3131n@gmail.com", password: "romegraftm3", provider: nil, uid: nil, name: "Mochang", image: nil)
 
 Album.create(
     name: "ye",
