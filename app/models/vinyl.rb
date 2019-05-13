@@ -1,4 +1,5 @@
 class Vinyl < ApplicationRecord
+    validates :rating, presence: true
     belongs_to :user
     belongs_to :album
     has_one :review

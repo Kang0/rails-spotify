@@ -13,6 +13,7 @@ class ReviewsController < ApplicationController
     def create
         @album = Album.find(params[:album_id])
         @vinyl = Vinyl.find_by(user_id: current_user.id, album_id: params[:album_id])
+        binding.pry
         @review = Review.new(
             content: params[:review][:content], 
             title: params[:review][:title], 
@@ -41,12 +42,15 @@ class ReviewsController < ApplicationController
 
     def update
         @review = Album.find(params[:album_id]).reviews.find(params[:id])
-        @review.update(review_params)
-
         @vinyl = @review.album.vinyls.user(current_user.id).first
-        @vinyl.update(rating: params[:review][:rating])
+        @album = @review.album
 
-        redirect_to album_review_path(@review.album, @review)
+        
+        if @review.update(review_params) && @vinyl.update(rating: params[:review][:rating])
+            redirect_to album_review_path(@review.album, @review)
+        else
+            render :edit
+        end
     end
 
     def show

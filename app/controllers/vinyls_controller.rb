@@ -20,6 +20,11 @@ class VinylsController < ApplicationController
     def index
         if params[:user_id]
             user_vinyls = Vinyl.user(params[:user_id])
+            
+            #polymorphism
+            # "highest_rated"
+            # @vinyls = user_vinyls.send(params[:filter])
+
 
             if params[:filter] == "Highest Rated"
                 @vinyls = user_vinyls.highest_rated
@@ -44,8 +49,8 @@ class VinylsController < ApplicationController
     def destroy
         @vinyl = Vinyl.find(params[:id])
         @review = Review.where(user_id: current_user.id, album_id: @vinyl.album).first
-        @vinyl.destroy
         @review.destroy
+        @vinyl.destroy
 
         redirect_to user_vinyls_path(current_user.id)
     end

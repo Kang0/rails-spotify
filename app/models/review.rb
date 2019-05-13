@@ -1,5 +1,5 @@
 class Review < ApplicationRecord
-    validates :rating, presence: true
+    validates :rating, presence: true, inclusion: { in: 0..10 , message: "Please rate the album out of 10" }
     validates :content, length: { minimum: 10}, allow_blank: true    
     
     belongs_to :album
