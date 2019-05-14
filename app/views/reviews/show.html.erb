@@ -29,8 +29,12 @@
         </div><!-- /.blog-post -->
     </div>
 
-    <div>
-        <!-- Placeholder for comment form -->
+    <div class="col-md-8">
+        <button>Show Comments</button>
+        <div>
+            <!--Show Comments-->
+        </div>
+        <%= render :partial => 'comments/comment', locals: {comment: @comment} %>
     </div>
 </main>
 

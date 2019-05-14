@@ -1,1 +1,3 @@
-<%= form_for ()
+<%= form_for (comment) do |f| %>
+    New Comment: <%= f.text_area :content, size:"50x2" %>
+<% end %>

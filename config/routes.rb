@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
+  resources :comments, only: [:create]
+
   resources :vinyls, only: [:create, :show]
 
   #shallow: true
