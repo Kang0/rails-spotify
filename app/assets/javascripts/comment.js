@@ -11,6 +11,8 @@ function showComment() {
 
         comment_post.done(function(data) {
             $("#commentContent").text(data["content"])
+            console.log(data)
+            $('form').clear()
         })
     })
 }
