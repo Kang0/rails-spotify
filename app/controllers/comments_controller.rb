@@ -1,10 +1,15 @@
 class CommentsController < ApplicationController
 
     def create
-        @comment = Comment.create(comments_params)
+        @comment = Comment.new(comments_params)
         @review = Review.find(params[:review_id])
-        binding.pry
-        redirect_to album_review_path(@review.album, @review)
+        @comment.user_id = current_user.id
+        
+        if @comment.save
+            render json: @comment, status: 201
+        else
+            redirect_to album_review_path(@review.album, @review)
+        end
     end
 
     private
