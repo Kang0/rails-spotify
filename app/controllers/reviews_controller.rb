@@ -42,7 +42,6 @@ class ReviewsController < ApplicationController
         @review = Album.find(params[:album_id]).reviews.find(params[:id])
         @vinyl = @review.album.vinyls.user(current_user.id).first
         @album = @review.album
-
         
         if @review.update(review_params) && @vinyl.update(rating: params[:review][:rating])
             redirect_to album_review_path(@review.album, @review)

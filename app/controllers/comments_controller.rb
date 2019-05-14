@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
 
     def create
         @comment = Comment.new(comments_params)
-        @review = Review.find(params[:review_id])
+        @review = Review.find(params[:comment][:review_id])
         @comment.user_id = current_user.id
         
         if @comment.save

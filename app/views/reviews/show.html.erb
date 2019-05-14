@@ -31,8 +31,12 @@
 
     <div class="col-md-8">
         <button>Show Comments</button><br><br>
-        <div>
-            <!--Show Comments-->
+        <div id="showComments">
+            <!-- show Comments -->
+        </div>
+        <div id="commentResults">
+            <h2 id="commentUser"></h2>
+            <p id="commentContent"></p>
         </div>
         <%= render :partial => 'comments/comment', locals: {comment: @comment, review: @review} %>
     </div>
