@@ -15,10 +15,14 @@ Rails.application.routes.draw do
   get '/search', to: 'artists#search'
 
   resources :albums, only: [:show, :index] do
-    resources :reviews
+    resources :reviews, only: [:new, :create, :index]
   end
 
-  resources :comments, only: [:create]
+  resources :comments, only: [:destroy, :show, :edit, :update]
+
+  resources :reviews, only: [:destroy, :show, :edit, :update] do
+    resources :comments, :only [:create, :index, :new]
+  end
 
   resources :vinyls, only: [:create, :show]
 

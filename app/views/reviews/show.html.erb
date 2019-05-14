@@ -30,11 +30,11 @@
     </div>
 
     <div class="col-md-8">
-        <button>Show Comments</button>
+        <button>Show Comments</button><br><br>
         <div>
             <!--Show Comments-->
         </div>
-        <%= render :partial => 'comments/comment', locals: {comment: @comment} %>
+        <%= render :partial => 'comments/comment', locals: {comment: @comment, review: @review} %>
     </div>
 </main>
 

@@ -1,3 +1,5 @@
-<%= form_for (comment) do |f| %>
+<%= form_for ([comment, review]) do |f| %>
+    <%= f.hidden_field :review_id, :value => @review.id %>
     New Comment: <%= f.text_area :content, size:"50x2" %>
+    <%= f.submit "Submit Comment" %>
 <% end %>
