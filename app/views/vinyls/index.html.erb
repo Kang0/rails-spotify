@@ -28,7 +28,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
                       <% if vinyl.review %>
-                      <a class="btn btn-sm btn-outline-secondary" href="<%= edit_album_review_path(vinyl.album, vinyl.album.reviews.find_by(user_id: current_user.id)) %>">
+                      <a class="btn btn-sm btn-outline-secondary" href="<%= edit_review_path(vinyl.review) %>">
                         Edit Review
                       </a>
                     <% else %>

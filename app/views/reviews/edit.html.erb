@@ -1,6 +1,6 @@
 <h1>Please edit your review for:</h1>
 
-<h2><%= @album.name %></h2>
-<img src="<%= image_path(@album.images) %>" height=300 ><br><br>
+<h2><%= @review.album.name %></h2>
+<img src="<%= image_path(@review.album.images) %>" height=300 ><br><br>
 
 <%= render partial: "form", locals: {album: @album, review: @review} %>

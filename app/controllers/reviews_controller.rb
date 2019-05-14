@@ -35,8 +35,8 @@ class ReviewsController < ApplicationController
     end
 
     def edit
-        @album = Album.find(params[:album_id])
-        @review = @album.reviews.find(params[:id])
+        @review = Review.find(params[:id])
+        binding.pry
     end
 
     def update
