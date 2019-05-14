@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   has_many :vinyls
   has_many :albums, through: :vinyls
+  has_many :comments
 
   has_many :reviews
   

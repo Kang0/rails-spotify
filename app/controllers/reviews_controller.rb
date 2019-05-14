@@ -56,6 +56,7 @@ class ReviewsController < ApplicationController
         @album = Album.find(params[:album_id])
         @review = @album.reviews.find(params[:id])
         @user = @review.user
+        @comment = Comment.new
     end
 
     private
