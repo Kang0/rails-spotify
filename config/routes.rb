@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new, :create, :index, :show, :destroy, :edit, :update]
   end
 
-  resources :comments, only: [:destroy, :edit, :update, :create, :index]
+  resources :comments, only: [:destroy, :edit, :update, :create]
 
   resources :vinyls, only: [:create, :show]
 

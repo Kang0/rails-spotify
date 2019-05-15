@@ -11,6 +11,17 @@ function listenForClick() {
     })
 }
 
+function showAllComments(e) {
+    $.get(e.target.baseURI + ".json", function(data) {
+        data.comments.forEach(function(comment){
+            let reviewComment = new Comment(comment)
+            let reviewCommentHTML = reviewComment.postHTML()
+            
+            document.getElementById("showComments").innerHTML += reviewCommentHTML
+        })
+    })
+}
+
 function showNewComment() {
     $('form').submit(function(event) {
         event.preventDefault()
@@ -27,16 +38,6 @@ function showNewComment() {
     })
 }
 
-function showAllComments(e) {
-    $.get(e.target.baseURI + ".json", function(data) {
-        data.comments.forEach(function(comment){
-            let reviewComment = new Comment(comment)
-            let reviewCommentHTML = reviewComment.postHTML()
-            
-            document.getElementById("showComments").innerHTML += reviewCommentHTML
-        })
-    })
-}
 
 class Comment {
     constructor(obj) {
