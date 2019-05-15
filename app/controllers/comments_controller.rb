@@ -12,6 +12,10 @@ class CommentsController < ApplicationController
         end
     end
 
+    def index
+        
+    end
+
     private
 
     def comments_params

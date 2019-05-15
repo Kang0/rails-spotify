@@ -1,6 +1,7 @@
 $(function () {
     console.log('comment.js is loaded ...')
     showNewComment()
+    showAllComments()
 });
 
 function showNewComment() {
@@ -15,5 +16,11 @@ function showNewComment() {
             console.log(data)
             $('form')[0].reset()
         })
+    })
+}
+
+function showAllComments() {
+    $('#commentButton').on('click', function(e) {
+        debugger;
     })
 }
