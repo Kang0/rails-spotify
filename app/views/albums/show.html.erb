@@ -22,7 +22,7 @@ What user's have to say about this album:<br><br>
                 <div class="card-header"><%= review.user.email %> - <strong><%= review.rating %>/10</strong></div>
                 <div class="card-body">
                     <p class="card-text text-truncate"><%= review.content %></p>
-                    <a href="#" class="btn btn-sm btn-outline-secondary" id="fullReview">Show Full Review</a>
+                    <button class="btn btn-sm btn-outline-secondary" id="fullReview" data-album="<%=@album.id%>" data-review="<%=review.id%>">Show Full Review</button>
                     <a href="<%= album_review_path(@album, review) %>" class="btn btn-sm btn-outline-secondary">See Review</a>
                 </div>
             </div>
