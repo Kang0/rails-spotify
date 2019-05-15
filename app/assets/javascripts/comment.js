@@ -1,8 +1,15 @@
 $(function () {
     console.log('comment.js is loaded ...')
+    listenForClick()
     showNewComment()
-    showAllComments()
 });
+
+function listenForClick() {
+    $("#commentButton").one("click", function(event) {
+        event.preventDefault()
+        showAllComments(event)
+    })
+}
 
 function showNewComment() {
     $('form').submit(function(event) {
@@ -11,23 +18,22 @@ function showNewComment() {
         let comment_post = $.post('/comments', comment_values)
 
         comment_post.done(function(data) {
-            $("#commentUser").text(data["user"]["name"])
-            $("#commentContent").text(data["content"])
+            let newComment = new Comment(data)
+            let newCommentHTML = newComment.postHTML()
+            document.getElementById("commentResults").innerHTML += newCommentHTML
             console.log(data)
             $('form')[0].reset()
         })
     })
 }
 
-function showAllComments() {
-    $('#commentButton').on('click', function(e) {
-        $.get(e.target.baseURI + ".json", function(data) {
-            data.comments.forEach(function(comment){
-                let reviewComment = new Comment(comment)
-                let reviewCommentHTML = reviewComment.postHTML()
-                
-                document.getElementById("showComments").innerHTML += reviewCommentHTML
-            })
+function showAllComments(e) {
+    $.get(e.target.baseURI + ".json", function(data) {
+        data.comments.forEach(function(comment){
+            let reviewComment = new Comment(comment)
+            let reviewCommentHTML = reviewComment.postHTML()
+            
+            document.getElementById("showComments").innerHTML += reviewCommentHTML
         })
     })
 }
