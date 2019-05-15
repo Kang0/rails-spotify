@@ -3,4 +3,4 @@
 <h2><%= @review.album.name %></h2>
 <img src="<%= image_path(@review.album.images) %>" height=300 ><br><br>
 
-<%= render partial: "form", locals: {album: @album, review: @review} %>
+<%= render partial: "form", locals: {album: @review.album, review: @review} %>
