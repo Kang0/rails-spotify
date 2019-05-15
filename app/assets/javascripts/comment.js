@@ -22,7 +22,12 @@ function showNewComment() {
 function showAllComments() {
     $('#commentButton').on('click', function(e) {
         $.get(e.target.baseURI + ".json", function(data) {
-            debugger;
+            data.comments.forEach(function(comment){
+                let reviewComment = new Comment(comment)
+                let reviewCommentHTML = reviewComment.postHTML()
+                
+                document.getElementById("showComments").innerHTML += reviewCommentHTML
+            })
         })
     })
 }
@@ -33,5 +38,15 @@ class Comment {
         this.content = obj.content
         this.review_id = obj.review_id
         this.user_id = obj.user_id
+        this.user = obj.user
     }
+}
+
+Comment.prototype.postHTML = function () {
+    return (`
+        <div>
+            <h4 id="commentUser">${this.user.name}</h4>
+            <p id="commentContent">${this.content}</p>
+        </div>
+    `)
 }

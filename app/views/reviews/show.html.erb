@@ -34,11 +34,11 @@
         <div id="showComments">
             <!-- show Comments -->
         </div>
+        <%= render :partial => 'comments/comment', locals: {comment: @comment, review: @review} %>
         <div id="commentResults">
             <h4 id="commentUser"></h4>
             <p id="commentContent"></p>
         </div>
-        <%= render :partial => 'comments/comment', locals: {comment: @comment, review: @review} %>
     </div>
 </main>
 
