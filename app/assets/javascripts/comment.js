@@ -21,6 +21,17 @@ function showNewComment() {
 
 function showAllComments() {
     $('#commentButton').on('click', function(e) {
-        debugger;
+        $.get(e.target.baseURI + ".json", function(data) {
+            debugger;
+        })
     })
+}
+
+class Comment {
+    constructor(obj) {
+        this.id = obj.id
+        this.content = obj.content
+        this.review_id = obj.review_id
+        this.user_id = obj.user_id
+    }
 }

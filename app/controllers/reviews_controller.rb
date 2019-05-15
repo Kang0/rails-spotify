@@ -55,6 +55,11 @@ class ReviewsController < ApplicationController
         @review = @album.reviews.find(params[:id])
         @user = @review.user
         @comment = Comment.new
+
+        respond_to do |f|
+            f.html {render :show}
+            f.json {render json: @review, include: ['comments', 'comments.user']}
+        end
     end
 
     private
