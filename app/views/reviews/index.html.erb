@@ -3,7 +3,8 @@
         <div class="card-header"><strong><%= review.title %></strong></div>
         <div class="card-body">
           <h5 class="card-title"><%= review.user.name %> - <%= review.rating%>/10</h5>
-          <p class="card-text text-truncate"><%= review.content %></p>
+          <p class="card-text" id="content-<%=review.id%>"><%= review.content.truncate(60) %></p>
+          <button class="btn btn-primary" id="fullReview" data-album="<%=@album.id%>" data-review="<%=review.id%>">Show Full Review</button>
           <a href="<%= album_review_path(review.album, review) %>" class="btn btn-primary">Go to Review</a>
         </div>
       </div><br>
