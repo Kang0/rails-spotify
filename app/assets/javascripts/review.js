@@ -1,7 +1,7 @@
 $( document ).ready(function () {
     console.log('album.js is loaded ...')
+    showIndex()    
     showFullReview()
-    showIndex()
 });
 
 function showFullReview() {
@@ -16,5 +16,15 @@ function showFullReview() {
 }
 
 function showIndex() {
-    
+    $.ajax({
+        url: "http://localhost:3000/albums/6/reviews.json",
+        dataType: 'json',
+        success: function(resp) {
+            console.log(resp)
+            
+        },
+        error: function(req, status, err){
+            console.log('something went wrong', status, err)
+        }
+    })
 }
