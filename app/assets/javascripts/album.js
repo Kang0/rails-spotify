@@ -1,4 +1,4 @@
-$(function () {
+$( document ).ready(function () {
     console.log('album.js is loaded ...')
     showFullReview()
 });
@@ -12,13 +12,4 @@ function showFullReview() {
             $("#content-" + json['id']).text(json['content'])
         })
     })
-}
-
-function fullReviewHTML(json) {
-    $("#reviewContent")
-}
-
-function debug(arg) {
-    debugger;
-    return true;
 }

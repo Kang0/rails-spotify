@@ -1,4 +1,4 @@
-$(function () {
+$(document).ready(function () {
     console.log('comment.js is loaded ...')
     listenForClick()
     showNewComment()
@@ -23,7 +23,7 @@ function showAllComments(e) {
 }
 
 function showNewComment() {
-    $('form').submit(function(event) {
+    $('form#newComment').submit(function(event) {
         event.preventDefault()
         let comment_values = $(this).serialize()
         let comment_post = $.post('/comments', comment_values)

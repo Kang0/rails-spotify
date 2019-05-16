@@ -25,7 +25,6 @@ class VinylsController < ApplicationController
             # "highest_rated"
             # @vinyls = user_vinyls.send(params[:filter])
 
-
             if params[:filter] == "Highest Rated"
                 @vinyls = user_vinyls.highest_rated
             elsif params[:filter] == "Lowest Rated"
