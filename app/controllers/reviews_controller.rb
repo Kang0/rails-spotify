@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
 
         respond_to do |f|
             f.html {render :index}
-            f.json {render json: @reviews, include: ['album']}
+            f.json {render json: @reviews, include: ['album', 'user']}
         end
     end
 

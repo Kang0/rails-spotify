@@ -7,18 +7,9 @@
 </div><!--end container-->
 
 
+<div class="userReviews">
 
-<% @reviews.each do |review| %>
-    <div class="card">
-        <div class="card-header"><strong><%= review.title %></strong></div>
-        <div class="card-body">
-          <h5 class="card-title"><%= review.user.name %> - <%= review.rating%>/10</h5>
-          <p class="card-text" id="content-<%=review.id%>"><%= review.content.truncate(60) %></p>
-          <button class="btn btn-sm btn-outline-secondary" id="fullReview" data-album="<%=@album.id%>" data-review="<%=review.id%>">Show Full Review</button>
-          <a href="<%= album_review_path(review.album, review) %>" class="btn btn-sm btn-outline-secondary">Go to Review</a>
-        </div>
-      </div><br>
-<% end %>
+</div>
 
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function() {
@@ -30,6 +21,9 @@
         let album = resp[0].album
         albumJS(album)
         // ask about the difference between using a function expression and a function declaration for albumHTML()
+        resp.forEach(function(e){
+          reviewJS(e)
+        })
       },
       error: function(req, status, error){
         console.log('something went wrong', status, err)
