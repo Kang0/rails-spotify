@@ -33,3 +33,18 @@
         </div>
       </div><br>
 <% end %>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $.ajax({
+      url: this.location.pathname + ".json",
+      dataType: 'json',
+      success: function(resp) {
+        debugger;
+      },
+      error: function(req, status, error){
+        console.log('something went wrong', status, err)
+      }
+    })
+  })
+</script>

@@ -1,6 +1,5 @@
 $( document ).ready(function () {
-    console.log('album.js is loaded ...')
-    showIndex()    
+    console.log('album.js is loaded ...')   
     showFullReview()
 });
 
@@ -21,7 +20,7 @@ function showIndex() {
         dataType: 'json',
         success: function(resp) {
             console.log(resp)
-            
+
         },
         error: function(req, status, err){
             console.log('something went wrong', status, err)
