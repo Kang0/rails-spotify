@@ -3,6 +3,11 @@ class ReviewsController < ApplicationController
     def index
         @album = Album.find(params[:album_id])
         @reviews = @album.reviews
+
+        respond_to do |f|
+            f.html {render :index}
+            f.json {render json: @reviews, include: ['album']}
+        end
     end
 
     def new

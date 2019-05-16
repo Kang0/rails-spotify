@@ -19,8 +19,8 @@
             Title: <%= f.text_field :title%><br><br>
             Review: <br><%= f.text_area :content, size: "100x15" %><br><br>
             Rating (out of 10): <br><%= f.number_field :rating, in: 1..10, step: 1 %><br><br>
-            Recommend: <%= f.check_box :recommend %><br><br>
-            <%= f.submit %>
+            Recommend: <%= f.check_box :recommend %>
+            <%= f.submit, :class => "btn-sm btn-outline-secondary"%>
         <% end %>
     </div>
 </div>

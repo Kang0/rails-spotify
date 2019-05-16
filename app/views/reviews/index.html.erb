@@ -1,11 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+        <h1 class="underline">User Reviews</h1>
+    </div>
+    <div class="col-md-4">
+      <img src="<%= @album.images %>" height="300"><br><br>
+    </div>
+    <div class="col-md-8">
+      <ul class="list-group">
+        <li class="list-group-item"><strong>Album:</strong> <%= @album.name %></li>
+        <li class="list-group-item"><strong>Artist:</strong> <%= @album.artist.name %></li>
+        <li class="list-group-item"><%= release_date(@album) %></li>
+        <li class="list-group-item"><strong>Label:</strong> <%= @album.label %></li>
+        <li class="list-group-item"><strong>Number of Tracks:</strong> <%= @album.number_of_tracks %></li>
+        <li class="list-group-item"><strong>Listen to Album:</strong> <a href="<%= @album.external_urls %>">Spotify</a></li>
+        <li class="list-group-item"><strong>Copyrights:</strong> <%= @album.copyrights %></li>
+      </ul>  
+    </div>
+  </div>
+</div>
+
+
+
 <% @reviews.each do |review| %>
     <div class="card">
         <div class="card-header"><strong><%= review.title %></strong></div>
         <div class="card-body">
           <h5 class="card-title"><%= review.user.name %> - <%= review.rating%>/10</h5>
           <p class="card-text" id="content-<%=review.id%>"><%= review.content.truncate(60) %></p>
-          <button class="btn btn-primary" id="fullReview" data-album="<%=@album.id%>" data-review="<%=review.id%>">Show Full Review</button>
-          <a href="<%= album_review_path(review.album, review) %>" class="btn btn-primary">Go to Review</a>
+          <button class="btn btn-sm btn-outline-secondary" id="fullReview" data-album="<%=@album.id%>" data-review="<%=review.id%>">Show Full Review</button>
+          <a href="<%= album_review_path(review.album, review) %>" class="btn btn-sm btn-outline-secondary">Go to Review</a>
         </div>
       </div><br>
 <% end %>

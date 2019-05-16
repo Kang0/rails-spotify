@@ -3,9 +3,9 @@
         <%= f.hidden_field :review_id, :value => review.id %>
     </div>
     <div class="text-area">
-        New Comment: <%= f.text_area :content, size:"50x2" %>
+        New Comment: <%= f.text_area :content, size:"50x2" %><br><br>
     </div>
     <div class="actions">
-        <%= f.submit "Submit Comment" %>
+        <%= f.submit "Submit Comment", :class => "btn-sm btn-outline-secondary" %>
     </div>
 <% end %>

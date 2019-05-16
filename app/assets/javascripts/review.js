@@ -1,16 +1,20 @@
 $( document ).ready(function () {
     console.log('album.js is loaded ...')
     showFullReview()
+    showIndex()
 });
 
 function showFullReview() {
     $("button#fullReview").on("click", function (e) {
         let dataset = e.currentTarget.dataset
-        debugger;
         fetch(`http://localhost:3000/albums/${dataset["album"]}/reviews/${dataset["review"]}.json`)
         .then(resp => resp.json())
         .then(json => {
             $("#content-" + json['id']).text(json['content'])
         })
     })
+}
+
+function showIndex() {
+    
 }
