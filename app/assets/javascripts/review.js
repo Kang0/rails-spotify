@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(function () {
     console.log('album.js is loaded ...')   
     showFullReview()
     showNewReview()
@@ -19,7 +19,19 @@ function showFullReview() {
 function showNewReview() {
     $('form#newReview').submit(function(event) {
         event.preventDefault()
-        debugger;
+        let review_values = $(this).serialize()
+
+        let review_url = event.target.action + ".json"
+        let review_post = $.post(review_url, review_values)
+
+        review_post.done(function(data) {
+            console.log(data)
+            let new_review = new Review(data)
+            debugger;
+            let new_review_html = new_review.postHTML()
+            document.getElementById("postedReview").innerHTML += new_review_html
+            $('form')[0].reset()
+        })
     })
  
 }
@@ -41,5 +53,25 @@ function reviewHTML(review) {
     </div><br>
     `
     //<%= album_review_path(review.album, review) %> is this the correct substitue for the link in js for "Go To Review"
+}
+
+class Review {
+    constructor(obj) {
+        this.id = obj.id
+        this.content = obj.content
+        this.rating = obj.rating
+        this.recommend = obj.recommend
+        this.title = obj.title
+    }
+}
+
+Review.prototype.postHTML = function() {
+    return (`
+        <h4>Review was successfully posted</h4>
+        <h4>Title: ${this.title}</h4>
+        <p>Content: ${this.content}</p>
+        <p>Rating: ${this.rating}</p>
+        <p>Recommended? ${this.recommend}</p>
+    `)
 }
 

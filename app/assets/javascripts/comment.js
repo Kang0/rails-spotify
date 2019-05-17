@@ -29,6 +29,7 @@ function showNewComment() {
         let comment_post = $.post('/comments', comment_values)
 
         comment_post.done(function(data) {
+            debugger;
             let newComment = new Comment(data)
             let newCommentHTML = newComment.postHTML()
             document.getElementById("commentResults").innerHTML += newCommentHTML

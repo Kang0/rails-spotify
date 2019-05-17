@@ -31,7 +31,12 @@ class ReviewsController < ApplicationController
         if @review.save
             @vinyl.rating = params[:review][:rating]
             @vinyl.save
-            render json: @review
+
+            respond_to do |f|
+                f.html {render :show}
+                f.json {render json: @review, status: 201}
+            end
+            
         else
             render :new
         end
