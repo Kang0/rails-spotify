@@ -1,12 +1,12 @@
-$( document ).ready(function () {
+$(document).ready(function () {
     console.log('album.js is loaded ...')   
     showFullReview()
+    showNewReview()
 });
 
 function showFullReview() {
     $("button#fullReview").on("click", function (e) {
         e.preventDefault()
-        debugger;
         let dataset = e.currentTarget.dataset
         fetch(`http://localhost:3000/albums/${dataset["album"]}/reviews/${dataset["review"]}.json`)
         .then(resp => resp.json())
@@ -14,6 +14,14 @@ function showFullReview() {
             $("#content-" + json['id']).removeClass("text-truncate").text(json['content'])
         })
     })
+}
+
+function showNewReview() {
+    $('form#newReview').submit(function(event) {
+        event.preventDefault()
+        debugger;
+    })
+ 
 }
 
 function reviewJS(review) {
@@ -27,7 +35,7 @@ function reviewHTML(review) {
          <div class="card-body">
            <h5 class="card-title">${review['user']['name']} - ${review['rating']}/10</h5>
            <p class="card-text text-truncate" id="content-${review['id']}">${review['content']}</p>
-           <button class="btn btn-sm btn-outline-secondary" id="fullReview" data-album=${review['album']['id']} data-review=${review['id']}>Show Full Review</button>
+           <button class="btn" id="fullReview" data-album=${review['album']['id']} data-review=${review['id']}>Show Full Review</button>
            <a href="/albums/${review['album']['id']}/reviews/${review['id']}" class="btn btn-sm btn-outline-secondary">Go to Review</a>
          </div>
     </div><br>

@@ -12,14 +12,14 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
-  $(document).ready(function() {
     $.ajax({
       url: this.location.pathname + ".json",
       //this.location.pathname = '/albums/:album_id/reviews'
       dataType: 'json',
       success: function(resp) {
+        let reviewCount = resp.length
         let album = resp[0].album
-        albumJS(album)
+        albumJS(album, reviewCount)
         // ask about the difference between using a function expression and a function declaration for albumHTML()
         resp.forEach(function(e){
           reviewJS(e)
@@ -29,5 +29,7 @@
         console.log('something went wrong', status, err)
       }
     })
-  })
+
+    // Why does the on click event for the button not work if I wrap the above code in $(document).ready(function () {})
+
 </script>

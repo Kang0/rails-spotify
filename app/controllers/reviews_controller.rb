@@ -31,7 +31,7 @@ class ReviewsController < ApplicationController
         if @review.save
             @vinyl.rating = params[:review][:rating]
             @vinyl.save
-            redirect_to album_review_path(@review.album, @review)
+            render json: @review
         else
             render :new
         end
