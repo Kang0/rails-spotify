@@ -38,7 +38,10 @@ class ReviewsController < ApplicationController
             end
             
         else
-            render :new
+            respond_to do |f|
+                f.html {render :new}
+                f.json {render json: @review.errors.full_messages, status: 400}
+            end
         end
 
         

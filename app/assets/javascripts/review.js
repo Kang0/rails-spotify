@@ -1,7 +1,7 @@
 $(function () {
     console.log('album.js is loaded ...')   
-    showFullReview()
     showNewReview()
+    showFullReview()
 });
 
 function showFullReview() {
@@ -9,10 +9,17 @@ function showFullReview() {
         e.preventDefault()
         let dataset = e.currentTarget.dataset
         fetch(`http://localhost:3000/albums/${dataset["album"]}/reviews/${dataset["review"]}.json`)
-        .then(resp => resp.json())
+        .then(resp => {
+            if (resp.status === 401) {
+                console.log('401 error')
+                const err = new Error('bad data')
+                throw err
+            }
+            return resp.json()})
         .then(json => {
+
             $("#content-" + json['id']).removeClass("text-truncate").text(json['content'])
-        })
+        }).catch(e => console.log(e))
     })
 }
 
@@ -22,18 +29,19 @@ function showNewReview() {
         let review_values = $(this).serialize()
 
         let review_url = event.target.action + ".json"
-        let review_post = $.post(review_url, review_values)
+        let review_post = $.post(review_url, review_values).fail(function(response) {
+            debugger;
+            alert('Error: ' + response.responseText);
+        })
 
         review_post.done(function(data) {
             console.log(data)
             let new_review = new Review(data)
-            debugger;
             let new_review_html = new_review.postHTML()
             document.getElementById("postedReview").innerHTML += new_review_html
             $('form')[0].reset()
         })
     })
- 
 }
 
 function reviewJS(review) {

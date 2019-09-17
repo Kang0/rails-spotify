@@ -12,6 +12,7 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
+  $(
     $.ajax({
       url: this.location.pathname + ".json",
       //this.location.pathname = '/albums/:album_id/reviews'
@@ -24,11 +25,13 @@
         resp.forEach(function(e){
           reviewJS(e)
         })
+       showFullReview()
       },
       error: function(req, status, error){
         console.log('something went wrong', status, err)
       }
     })
+  )
 
     // Why does the on click event for the button not work if I wrap the above code in $(document).ready(function () {})
 
