@@ -36,7 +36,7 @@ gem 'bootstrap-sass', "~> 3.4.1"
 gem 'sassc-rails', '>= 2.1.0'
 gem 'popper_js', '~> 1.12.9'
 
-gem 'devise'
+gem 'devise', ">= 4.7.1"
 gem 'omniauth-facebook'
 
 gem 'rspotify'
@@ -44,6 +44,8 @@ gem 'rspotify'
 gem 'pry'
 
 gem 'active_model_serializers'
+
+gem 'nokogiri', ">= 1.10.4"
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
